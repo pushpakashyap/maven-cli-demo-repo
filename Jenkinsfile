@@ -16,7 +16,7 @@ pipeline {
        		}
    	}
 	  
-	stage('Publish Test Coverage Report') {
+	/*stage('Publish Test Coverage Report') {
          steps {
            step([$class: 'JacocoPublisher', 
      		 execPattern: 'target/*.exec',
@@ -25,8 +25,13 @@ pipeline {
      		 exclusionPattern: 'src/test*'
 		])
             }
+        }*/
+	  
+	stage('Jacoco Coverage Report') {
+        steps{
+            jacoco()
         }
-	
+		
 	stage('SonarQube'){
          steps{
             bat label: '', script: '''mvn sonar:sonar \
